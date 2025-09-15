@@ -89,6 +89,34 @@ void insert_nth(int v,int n){
      temp->next=newItem;
      
  }
+ int scarch(int v){
+      node*temp=head;
+      int found=0;
+      int count=0;
+      while (temp!=NULL)
+      { 
+        count++;
+        if(temp->value==v){
+           return count;
+        }
+        temp=temp->next;
+      }
+      return 0;
+ }
+ void  bubbolSort(){
+    int n=size();
+    for(int i=0;i<n-1;i++){
+         node*temp=head;
+       for(int j=0;j<n-i-1;j++){
+        if(temp->value>temp->next->value){
+            int temp1=temp->value;
+            temp->value=temp->next->value;
+            temp->next->value=temp1;
+        }
+        temp=temp->next;
+       }
+    }
+ }
 
 void manue(){
     cout<<"------enter any choice--------"<<endl;
@@ -100,6 +128,8 @@ void manue(){
       cout<<"6)delete after"<<endl;
       cout<<"7)size"<<endl;
       cout<<"8)insert after"<<endl;
+       cout<<"9)scarch"<<endl;
+          cout<<"10)Bubbol sort"<<endl;
     cout<<"0)quit"<<endl;
 }
 
@@ -146,6 +176,19 @@ int main(){
         int v;
         cin>>v;
        insert_nth(v,n); 
+      }if(n==9){
+         cout<<"ente numver--";
+       int v;
+        cin>>v;
+        int s= scarch(v);
+        if(s>0){
+            cout<<endl<<"found in index-"<<s<<endl;
+        }else{
+            cout<<"not found"<<endl;
+        }
+ 
+      }if(n==10){
+        bubbolSort();
       }
       else if(n==2){
         Print();

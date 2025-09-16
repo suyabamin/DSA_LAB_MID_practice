@@ -105,17 +105,39 @@ void insert_nth(int v,int n){
  }
  void  bubbolSort(){
     int n=size();
-    for(int i=0;i<n-1;i++){
+     for(int i=0;i<n-1;i++){
          node*temp=head;
-       for(int j=0;j<n-i-1;j++){
-        if(temp->value>temp->next->value){
+        for(int j=0;j<n-i-1;j++){
+           if(temp->value>temp->next->value){
             int temp1=temp->value;
-            temp->value=temp->next->value;
+           temp->value=temp->next->value;
             temp->next->value=temp1;
+           }
+            temp=temp->next;
         }
-        temp=temp->next;
-       }
     }
+ }
+ void insersionsort(){
+    node*temp=head;
+    node*i=head->next;
+   while (i!=NULL)
+   {
+    int temp1=i->value;
+      node*j=head;
+
+      while (j!=i)
+      {
+       if(j->value>temp1){
+         int temp2=j->value;
+         j->value=i->value;
+         i->value=temp2;
+       }
+       j=j->next;
+      }
+      i=i->next;
+   }
+   
+   
  }
 
 void manue(){
@@ -130,6 +152,7 @@ void manue(){
       cout<<"8)insert after"<<endl;
        cout<<"9)scarch"<<endl;
           cout<<"10)Bubbol sort"<<endl;
+           cout<<"11)insersion sort"<<endl;
     cout<<"0)quit"<<endl;
 }
 
@@ -189,6 +212,8 @@ int main(){
  
       }if(n==10){
         bubbolSort();
+      }if(n==11){
+        insersionsort();
       }
       else if(n==2){
         Print();

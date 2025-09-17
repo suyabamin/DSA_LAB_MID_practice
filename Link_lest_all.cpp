@@ -176,10 +176,6 @@ void insert_nth(int v,int n){
   return -1;
 
 
-
-
-
-
  }
  void convertarray(){
     node*temp=head;
@@ -193,7 +189,47 @@ void insert_nth(int v,int n){
       cout<<endl<<arr[i];
     }
 
- }
+ } node* merge(node* a, node* b) {
+    if (a == NULL) return b;
+    if (b == NULL) return a;
+
+    node* result;
+    if (a->value <= b->value) {
+        result = a;
+        result->next = merge(a->next, b);
+    } else {
+        result = b;
+        result->next = merge(a, b->next);
+    }
+    return result;
+}
+
+node* getMid(node* head) {
+    node* slow = head;
+    node* fast = head->next;
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+node* mergesort_helper(node* h) {
+    if (h == NULL || h->next == NULL) return h;
+
+    node* mid = getMid(h);
+    node* second = mid->next;
+    mid->next = NULL;
+
+    node* left = mergesort_helper(h);
+    node* right = mergesort_helper(second);
+
+    return merge(left, right);
+}
+
+void margesort() {
+    head = mergesort_helper(head);
+}
 
 void manue(){
     cout<<"------enter any choice--------"<<endl;
@@ -211,6 +247,7 @@ void manue(){
             cout<<"12)binary scarch"<<endl;
              cout<<"13)get mid"<<endl;
              cout<<"14)convert array"<<endl;
+             cout<<"15)marge sort"<<endl;
     cout<<"0)quit"<<endl;
 }
 
@@ -287,6 +324,8 @@ int main(){
       
       }else if(n==14){
       convertarray();
+      }else if(n==15){
+     margesort();
       }
       else if(n==2){
         Print();

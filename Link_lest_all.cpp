@@ -86,9 +86,9 @@ void insert_nth(int v,int n){
      }
      newItem->value=v;
      newItem->next=temp->next;
-     temp->next=newItem;
-     
+     temp->next=newItem;  
  }
+
  int scarch(int v){
       node*temp=head;
       int found=0;
@@ -137,7 +137,62 @@ void insert_nth(int v,int n){
       i=i->next;
    }
    
+ }
+ int mid(){
+    node*temp=head;
+    int m=size();
+    int mid=m/2;
+    for(int i=0;i<mid;i++){
+        temp=temp->next;
+    }
+   return temp->value;
+ }
+  node* midfor(node*slow,node*first){
+   while (first!=NULL)
+   {
+    first=first->next->next;
+    slow=slow->next;
+   }
+   return slow;
    
+ }
+ int  binaryscarch(int v){
+    node*low=head;
+    node*high=NULL;
+
+    while (low!=high)
+    {
+        node*mid=midfor(low,high);
+        if(mid->value==v){
+            return 1;
+        }else if(mid->value>v){
+          high=mid;
+        }else{
+          low=mid->next;
+        }
+     
+    }
+    
+  return -1;
+
+
+
+
+
+
+ }
+ void convertarray(){
+    node*temp=head;
+    int n=size();
+    int arr[n];
+    for(int i=0;i<n;i++){
+       arr[i]= temp->value;
+       temp= temp->next;
+    }
+    for(int i=0;i<n;i++){
+      cout<<endl<<arr[i];
+    }
+
  }
 
 void manue(){
@@ -153,6 +208,9 @@ void manue(){
        cout<<"9)scarch"<<endl;
           cout<<"10)Bubbol sort"<<endl;
            cout<<"11)insersion sort"<<endl;
+            cout<<"12)binary scarch"<<endl;
+             cout<<"13)get mid"<<endl;
+             cout<<"14)convert array"<<endl;
     cout<<"0)quit"<<endl;
 }
 
@@ -214,6 +272,21 @@ int main(){
         bubbolSort();
       }if(n==11){
         insersionsort();
+      }if(n==12){
+       int v;
+       cout<<"scarch any value--";
+       cin>>v;
+       int n= binaryscarch(v);
+       if(n==1){
+        cout<<endl<<"found"<<endl;
+       }else{
+        cout<<endl<<"not found"<<endl;
+       }
+      }else if(n==13){
+       mid();
+      
+      }else if(n==14){
+      convertarray();
       }
       else if(n==2){
         Print();

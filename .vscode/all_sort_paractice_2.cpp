@@ -29,6 +29,21 @@ void insersionsort(int arr[],int n){
         arr[j+1]=temp;
       }
 }
+void selectionsort(int arr[],int n){
+    for(int i=0;i<n-1;i++){
+        int mainindex=i;
+        for(int j=i+1;j<n;j++){
+           if(arr[mainindex]>arr[j]){
+           mainindex=j;
+           }
+        }
+        int temp=arr[i];
+           arr[i]=arr[mainindex];
+           arr[mainindex]=temp;
+    }
+
+}
+
 int main(){
     int n;
     cout<<"enter the array size--";
@@ -44,8 +59,11 @@ int main(){
    // cout<<"bubbol sort--";
    // bubbolsort(arr,n);
    //print(arr,n);
-   insersionsort(arr,n);
-     cout<<"insersion  sort--";
-    print(arr,n);
+  // insersionsort(arr,n);
+   //  cout<<"insersion  sort--";
+   // print(arr,n);
+
+   selectionsort(arr,n);
+   print(arr,n);
  
 }
